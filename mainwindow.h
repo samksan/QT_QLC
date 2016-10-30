@@ -15,6 +15,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_actionKaijianghaoma_triggered();
+
+    void on_actionView_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

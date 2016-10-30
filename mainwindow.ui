@@ -39,22 +39,31 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionKaijianghaoma"/>
    <addaction name="actionView"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionKaijianghaoma">
+   <property name="icon">
+    <iconset resource="myresources.qrc">
+     <normaloff>:/icons/resources/icons/cloud_computing_128PX.png</normaloff>:/icons/resources/icons/cloud_computing_128PX.png</iconset>
+   </property>
    <property name="text">
     <string>号码更新</string>
    </property>
   </action>
   <action name="actionView">
+   <property name="icon">
+    <iconset resource="myresources.qrc">
+     <normaloff>:/icons/resources/icons/database128px.png</normaloff>:/icons/resources/icons/database128px.png</iconset>
+   </property>
    <property name="text">
     <string>显示号码</string>
    </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="myresources.qrc"/>
+ </resources>
  <connections/>
 </ui>
