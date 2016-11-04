@@ -2,6 +2,11 @@
 #include "ui_mainwindow.h"
 #include "database/netnumbers.h"
 
+#include <QSqlDatabase>
+#include <QSqlTableModel>
+#include <QSqlRecord>
+#include <QTableView>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -25,12 +30,35 @@ void MainWindow::on_actionKaijianghaoma_triggered()
 
 void MainWindow::on_actionView_triggered()
 {
-    QList<QList<int>> list = NetNumbers::getNumbers();
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setHostName("localhost");
+    db.setDatabaseName("kjhdb.db");
+    bool ok = db.open();
 
-    foreach (QList<int> tempList, list) {
-        qDebug() << tempList[0] << "," << tempList[1] << "," << tempList[2]
-                                << ","<< tempList[3] << ","<< tempList[4]
-                                << ","<< tempList[5] << ","<< tempList[6]
-                                << ","<< tempList[7] << ","<< tempList[8] << endl;
+    if(ok){
+        qDebug() << "connect ok";
+    }else{
+        qDebug() << "connect failed";
     }
+
+    QSqlTableModel *model = new QSqlTableModel(this);
+    model->setTable("kjh");
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    model->select();
+    model->setHeaderData(0, Qt::Horizontal, tr("期号"));
+    model->setHeaderData(1, Qt::Horizontal, tr("号码1"));
+    model->setHeaderData(2, Qt::Horizontal, tr("号码2"));
+    model->setHeaderData(3, Qt::Horizontal, tr("号码3"));
+    model->setHeaderData(4, Qt::Horizontal, tr("号码4"));
+    model->setHeaderData(5, Qt::Horizontal, tr("号码5"));
+    model->setHeaderData(6, Qt::Horizontal, tr("号码6"));
+    model->setHeaderData(7, Qt::Horizontal, tr("号码7"));
+    model->setHeaderData(8, Qt::Horizontal, tr("号码8"));
+
+    QTableView *table = new QTableView;
+    table->setModel(model);
+    table->resizeColumnsToContents();
+    table->resizeRowsToContents();
+    table->setGeometry(200,160,418,360);
+    table->show();
 }
