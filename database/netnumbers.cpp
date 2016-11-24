@@ -74,7 +74,7 @@ void NetNumbers::toDB(int number[100][9])
     db.close();
 }
 
-QString NetNumbers::getHtml(QString url)
+void NetNumbers::getHtml(QString url)
 {
     QNetworkAccessManager *manager = new QNetworkAccessManager();
     QNetworkReply *reply = manager->get(QNetworkRequest(QUrl(url)));
@@ -83,7 +83,7 @@ QString NetNumbers::getHtml(QString url)
     connect(manager, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
     eventLoop.exec();       //block until finish
     responseData = reply->readAll();
-    return QString(responseData);
+    strToDB(responseData);
 }
 
 void NetNumbers::strToDB(QString str)

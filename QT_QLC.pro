@@ -16,10 +16,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    database/netnumbers.cpp
+    database/netnumbers.cpp \
+    Analysis/analysiscontrol.cpp \
+    Analysis/analysisutils.cpp
 
 HEADERS  += mainwindow.h \
-    database/netnumbers.h
+    database/netnumbers.h \
+    Analysis/analysiscontrol.h \
+    Analysis/analysisutils.h
 
 FORMS    += mainwindow.ui
 

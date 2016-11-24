@@ -20,6 +20,8 @@ private slots:
 
     void on_actionView_triggered();
 
+    void on_btnAnalysis_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

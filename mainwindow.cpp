@@ -7,6 +7,8 @@
 #include <QSqlRecord>
 #include <QTableView>
 
+#include "Analysis/analysiscontrol.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -19,15 +21,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
+// 从网络获取开奖号码
 void MainWindow::on_actionKaijianghaoma_triggered()
 {
-    QString data = NetNumbers::getHtml
-            ("http://trend.caipiao.163.com/qlc/?periodNumber=100");
-
-    NetNumbers::strToDB(data);
+    NetNumbers::getHtml("http://trend.caipiao.163.com/qlc/?periodNumber=100");
 }
 
+// 显示开奖号码
 void MainWindow::on_actionView_triggered()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -61,4 +61,12 @@ void MainWindow::on_actionView_triggered()
     table->resizeRowsToContents();
     table->setGeometry(200,160,418,360);
     table->show();
+}
+
+// 分析历史号码
+void MainWindow::on_btnAnalysis_clicked()
+{
+    // 控制分析过程
+    AnalysisControl ana;
+    ana.start();
 }
