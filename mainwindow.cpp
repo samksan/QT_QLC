@@ -24,7 +24,7 @@ MainWindow::~MainWindow()
 // 从网络获取开奖号码
 void MainWindow::on_actionKaijianghaoma_triggered()
 {
-    NetNumbers::getHtml("http://trend.caipiao.163.com/qlc/?periodNumber=100");
+    NetNumbers::getHtml("http://trend.lecai.com/ssq/redBaseTrend.action?recentPhase=100&onlyBody=true");
 }
 
 // 显示开奖号码
@@ -52,8 +52,6 @@ void MainWindow::on_actionView_triggered()
     model->setHeaderData(4, Qt::Horizontal, tr("号码4"));
     model->setHeaderData(5, Qt::Horizontal, tr("号码5"));
     model->setHeaderData(6, Qt::Horizontal, tr("号码6"));
-    model->setHeaderData(7, Qt::Horizontal, tr("号码7"));
-    model->setHeaderData(8, Qt::Horizontal, tr("号码8"));
 
     QTableView *table = new QTableView;
     table->setModel(model);

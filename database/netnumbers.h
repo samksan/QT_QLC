@@ -13,7 +13,7 @@ public:
     static void strToDB(QString str);
     static QList<QList<int>> getNumbers();
 private:
-    static void toDB(int number[100][9]);
+    static void toDB(int number[100][7]);
 };
 
 #endif // NETNUMBERS_H
