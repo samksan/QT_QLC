@@ -9,10 +9,13 @@
 
 QList<QList<int> > NetNumbers::getNumbers()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setHostName("localhost");
-    db.setDatabaseName("kjhdb.db");
+//    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+//    db.setHostName("localhost");
+//    db.setDatabaseName("kjhdb.db");
+//    db.open();
+    QSqlDatabase db = QSqlDatabase::database();
     db.open();
+
     QSqlQuery query;
     query.exec("SELECT * FROM kjh");
 
@@ -35,9 +38,14 @@ QList<QList<int> > NetNumbers::getNumbers()
 }
 void NetNumbers::toDB(int number[100][7])
 {
+    /*
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setHostName("localhost");
     db.setDatabaseName("kjhdb.db");
+    db.open();
+    */
+
+    QSqlDatabase db = QSqlDatabase::database();
     db.open();
 
     QSqlQuery query;
@@ -68,6 +76,13 @@ void NetNumbers::toDB(int number[100][7])
         qDebug() << "数据更新失败" << endl;
 
     db.close();
+}
+
+void NetNumbers::initQSQLDatabase()
+{
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setHostName("localhost");
+    db.setDatabaseName("kjhdb.db");
 }
 
 void NetNumbers::getHtml(QString url)

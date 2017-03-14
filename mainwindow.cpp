@@ -14,6 +14,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // 初始化数据库连接
+    NetNumbers::initQSQLDatabase();
 }
 
 MainWindow::~MainWindow()
@@ -30,9 +33,11 @@ void MainWindow::on_actionKaijianghaoma_triggered()
 // 显示开奖号码
 void MainWindow::on_actionView_triggered()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setHostName("localhost");
-    db.setDatabaseName("kjhdb.db");
+//    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+//    db.setHostName("localhost");
+//    db.setDatabaseName("kjhdb.db");
+
+    QSqlDatabase db = QSqlDatabase::database();
     bool ok = db.open();
 
     if(ok){

@@ -9,6 +9,7 @@ class NetNumbers : public QObject
 {
     Q_OBJECT
 public:
+    static void initQSQLDatabase();
     static void getHtml(QString url);
     static void strToDB(QString str);
     static QList<QList<int>> getNumbers();
