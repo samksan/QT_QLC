@@ -24,19 +24,16 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-// 从网络获取开奖号码
+// 从网络获取开奖号码，并保存到数据库
 void MainWindow::on_actionKaijianghaoma_triggered()
 {
     NetNumbers::getHtml("http://trend.lecai.com/ssq/redBaseTrend.action?recentPhase=100&onlyBody=true");
 }
 
-// 显示开奖号码
+// 连接数据库获取号码并利用 Qt 的 Model-View 显示开奖号码
 void MainWindow::on_actionView_triggered()
 {
-//    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-//    db.setHostName("localhost");
-//    db.setDatabaseName("kjhdb.db");
-
+    // 获取数据库连接，测试连接是否成功
     QSqlDatabase db = QSqlDatabase::database();
     bool ok = db.open();
 
@@ -46,6 +43,7 @@ void MainWindow::on_actionView_triggered()
         qDebug() << "connect failed";
     }
 
+    // Qt Model-View 显示数据库
     QSqlTableModel *model = new QSqlTableModel(this);
     model->setTable("kjh");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);

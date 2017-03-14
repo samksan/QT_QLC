@@ -7,15 +7,16 @@
 #include <QtSql/QSqlTableModel>
 #include <QDebug>
 
-QList<QList<int> > NetNumbers::getNumbers()
+/**
+ * @brief NetNumbers::getNumbers 从数据库中获取开奖号码
+ * @return QList<QList<int>> 返回开奖号码
+ */
+QList<QList<int>> NetNumbers::getNumbers()
 {
-//    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-//    db.setHostName("localhost");
-//    db.setDatabaseName("kjhdb.db");
-//    db.open();
+    // 获取数据库连接
     QSqlDatabase db = QSqlDatabase::database();
-    db.open();
 
+    // 获取数据库内容，把内容放进 QList 容器，并返回
     QSqlQuery query;
     query.exec("SELECT * FROM kjh");
 
@@ -36,18 +37,17 @@ QList<QList<int> > NetNumbers::getNumbers()
     db.close();
     return list;
 }
+
+/**
+ * @brief NetNumbers::toDB 把从网络获取的二维数组（开奖号码）保存到数据库
+ * @param number 从网络得到的开奖号码
+ */
 void NetNumbers::toDB(int number[100][7])
 {
-    /*
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setHostName("localhost");
-    db.setDatabaseName("kjhdb.db");
-    db.open();
-    */
-
+    // 获取数据库连接
     QSqlDatabase db = QSqlDatabase::database();
-    db.open();
 
+    // 格式化数据表，保存开奖号
     QSqlQuery query;
     query.exec("create table kjh(sn int primarykey,n1 int,n2 int,n3 int,n4 int,n5 int,n6 int)");
     query.exec("DELETE FROM kjh");
@@ -78,6 +78,9 @@ void NetNumbers::toDB(int number[100][7])
     db.close();
 }
 
+/**
+ * @brief NetNumbers::initQSQLDatabase 初始化数据库连接，在任意位置都可以获取到数据库连接实例
+ */
 void NetNumbers::initQSQLDatabase()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -85,6 +88,10 @@ void NetNumbers::initQSQLDatabase()
     db.setDatabaseName("kjhdb.db");
 }
 
+/**
+ * @brief NetNumbers::getHtml 通过网站过滤得到开奖号码
+ * @param url 获取开奖号码的网址
+ */
 void NetNumbers::getHtml(QString url)
 {
     QNetworkAccessManager *manager = new QNetworkAccessManager();
@@ -97,6 +104,10 @@ void NetNumbers::getHtml(QString url)
     strToDB(responseData);
 }
 
+/**
+ * @brief NetNumbers::strToDB 处理从网络获取到的字符串，调用函数生成开奖号保存到数据库
+ * @param str 从网络获取到的字符串
+ */
 void NetNumbers::strToDB(QString str)
 {
     QStringList list;
