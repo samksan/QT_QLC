@@ -7,7 +7,11 @@
 #include <QSqlRecord>
 #include <QTableView>
 
+#include <QFileDialog>
+#include <QTextStream>
+
 #include "Analysis/analysiscontrol.h"
+#include "Analysis/analysisutils.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -70,4 +74,28 @@ void MainWindow::on_btnAnalysis_clicked()
     // 控制分析过程
     AnalysisControl ana;
     ana.start();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    // 选择文件的对话框
+    QString file = QFileDialog::getOpenFileName(this,tr("选择文件"),"D:/",tr("文本文件(*.txt)"));
+    qDebug() << "选择的文件为:" << file;
+
+    // 读取选择文件,文件格式固定
+    // 文件按行记录购买的号码 04 07 08 19 32 33-13 , 其中第一行是官方开奖号码,第二行开始是购买的号码
+    QFile number_file(file);
+    if(!number_file.open(QFile::ReadOnly | QFile::Text)){
+        qDebug() << "打开文件失败!";
+        return;
+    }
+
+    QTextStream read_text(&number_file);
+    QString text = read_text.readAll();
+    // 关闭文件
+    number_file.close();
+
+    QList<QString> zz = AnalysisUtils::NumbersContrast(text);
+
+    qDebug() << zz;
 }

@@ -13,6 +13,9 @@ class AnalysisUtils : public QObject
 public:
     explicit AnalysisUtils(QObject *parent = 0);
 
+    // 开奖号码和购买的方案的对比
+    static QList<QString> NumbersContrast(QString text);
+
 signals:
 
 public slots:
