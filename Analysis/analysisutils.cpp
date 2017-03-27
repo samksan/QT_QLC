@@ -45,15 +45,20 @@ QList<QString> AnalysisUtils::NumbersContrast(QString text)
     // 号码对比函数, 从buy_number[1] 开始
     int red_count = 0;
     int blue_count = 0;
-    int first,second,third,fourth,fifth,sixth;
+    int first = 0;
+    int second = 0;
+    int third = 0;
+    int fourth = 0;
+    int fifth = 0;
+    int sixth =0;
     QList<int> red_number;
 
     // 返回的结果
     QList<QString> zz;
+    zz << "以下是投注结果:";
     for (int var = 1; var < buy_number.length(); ++var) {
         // 红球号码
-        red_number << buy_number[var].at(0) << buy_number[var].at(1) << buy_number[var].at(2)
-                   << buy_number[var].at(3) << buy_number[var].at(4) << buy_number[var].at(5);
+        red_number << buy_number[var].at(0) << buy_number[var].at(1) << buy_number[var].at(2) << buy_number[var].at(3) << buy_number[var].at(4) << buy_number[var].at(5);
 
         // 对比号码,得出 red_count,blue_count 红蓝球匹配个数
         if(red_number.contains(r1))
@@ -75,48 +80,56 @@ QList<QString> AnalysisUtils::NumbersContrast(QString text)
         case 6:
             if(blue_count == 1){
                 first++;                        // 一等奖 6+1
-                zz << "一等奖" + QString::number(r1) + " " + QString::number(r2) + " " + QString::number(r3) + " " + QString::number(r4) + " " + QString::number(r5) + " " + QString::number(r6) + "-" + QString::number(num_blue);
+                zz << "一等奖" + QString::number(red_number[0]) + " " + QString::number(red_number[1]) + " " + QString::number(red_number[2]) + " " + QString::number(red_number[3]) + " " + QString::number(red_number[4]) + " " + QString::number(red_number[5]) + "-" + QString::number(buy_number[var].at(6));
             }else if (blue_count == 0) {
                 second++;                   // 二等奖 6+0
-                zz << "二等奖" + QString::number(r1) + " " + QString::number(r2) + " " + QString::number(r3) + " " + QString::number(r4) + " " + QString::number(r5) + " " + QString::number(r6) + "-" + QString::number(num_blue);
+                zz << "二等奖" + QString::number(red_number[0]) + " " + QString::number(red_number[1]) + " " + QString::number(red_number[2]) + " " + QString::number(red_number[3]) + " " + QString::number(red_number[4]) + " " + QString::number(red_number[5]) + "-" + QString::number(buy_number[var].at(6));
             }
             break;
         case 5:
             if(blue_count == 1){
                 third++;                    // 三等奖 5+1                             3000
-                zz << "三等奖" + QString::number(r1) + " " + QString::number(r2) + " " + QString::number(r3) + " " + QString::number(r4) + " " + QString::number(r5) + " " + QString::number(r6) + "-" + QString::number(num_blue);
+                zz << "三等奖" + QString::number(red_number[0]) + " " + QString::number(red_number[1]) + " " + QString::number(red_number[2]) + " " + QString::number(red_number[3]) + " " + QString::number(red_number[4]) + " " + QString::number(red_number[5]) + "-" + QString::number(buy_number[var].at(6));
             }else if (blue_count == 0) {
                 fourth++;                   // 四等奖 5+0 或 4+1                  200
-                zz << "四等奖" + QString::number(r1) + " " + QString::number(r2) + " " + QString::number(r3) + " " + QString::number(r4) + " " + QString::number(r5) + " " + QString::number(r6) + "-" + QString::number(num_blue);
+                zz << "四等奖" + QString::number(red_number[0]) + " " + QString::number(red_number[1]) + " " + QString::number(red_number[2]) + " " + QString::number(red_number[3]) + " " + QString::number(red_number[4]) + " " + QString::number(red_number[5]) + "-" + QString::number(buy_number[var].at(6));
             }
             break;
         case 4:
             if(blue_count == 1){
                 fourth++;                   // 四等奖 5+0 或 4+1                  200
-                zz << "四等奖" + QString::number(r1) + " " + QString::number(r2) + " " + QString::number(r3) + " " + QString::number(r4) + " " + QString::number(r5) + " " + QString::number(r6) + "-" + QString::number(num_blue);
+                zz << "四等奖" + QString::number(red_number[0]) + " " + QString::number(red_number[1]) + " " + QString::number(red_number[2]) + " " + QString::number(red_number[3]) + " " + QString::number(red_number[4]) + " " + QString::number(red_number[5]) + "-" + QString::number(buy_number[var].at(6));
             }else if (blue_count == 0) {
                 fifth++;                    // 五等奖 4+0 或 3+1                  10
-                zz << "五等奖" + QString::number(r1) + " " + QString::number(r2) + " " + QString::number(r3) + " " + QString::number(r4) + " " + QString::number(r5) + " " + QString::number(r6) + "-" + QString::number(num_blue);
+                zz << "五等奖" + QString::number(red_number[0]) + " " + QString::number(red_number[1]) + " " + QString::number(red_number[2]) + " " + QString::number(red_number[3]) + " " + QString::number(red_number[4]) + " " + QString::number(red_number[5]) + "-" + QString::number(buy_number[var].at(6));
             }
             break;
         case 3:
             if(blue_count == 1){
                 fifth++;                    // 五等奖 4+0 或 3+1                  10
-                zz << "五等奖" + QString::number(r1) + " " + QString::number(r2) + " " + QString::number(r3) + " " + QString::number(r4) + " " + QString::number(r5) + " " + QString::number(r6) + "-" + QString::number(num_blue);
+                zz << "五等奖" + QString::number(red_number[0]) + " " + QString::number(red_number[1]) + " " + QString::number(red_number[2]) + " " + QString::number(red_number[3]) + " " + QString::number(red_number[4]) + " " + QString::number(red_number[5]) + "-" + QString::number(buy_number[var].at(6));
             }
             break;
         default:
             if(blue_count == 1){
                 sixth++;                    // 六等奖 2+1 或 1+1 或 0+1        5
-                zz << "六等奖" + QString::number(r1) + " " + QString::number(r2) + " " + QString::number(r3) + " " + QString::number(r4) + " " + QString::number(r5) + " " + QString::number(r6) + "-" + QString::number(num_blue);
+                zz << "六等奖" + QString::number(red_number[0]) + " " + QString::number(red_number[1]) + " " + QString::number(red_number[2]) + " " + QString::number(red_number[3]) + " " + QString::number(red_number[4]) + " " + QString::number(red_number[5]) + "-" + QString::number(buy_number[var].at(6));
             }
             break;
         }
         // 清空临时变量的数据
         red_count = 0;
         blue_count = 0;
+        red_number.clear();
 
     }
+    zz << "总投注: " + QString::number(list.length() - 1) + " 注";
+    zz << "一等奖: " + QString::number(first) + " 个";
+    zz << "二等奖: " + QString::number(second) + " 个";
+    zz << "三等奖: " + QString::number(third) + " 个";
+    zz << "四等奖: " + QString::number(fourth) + " 个";
+    zz << "五等奖: " + QString::number(fifth) + " 个";
+    zz << "六等奖: " + QString::number(sixth) + " 个";
 
     return zz;
 }

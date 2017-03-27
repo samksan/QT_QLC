@@ -22,7 +22,7 @@ private slots:
 
     void on_btnAnalysis_clicked();
 
-    void on_pushButton_clicked();
+    void on_actionContrast_triggered();
 
 private:
     Ui::MainWindow *ui;

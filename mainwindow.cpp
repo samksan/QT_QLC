@@ -76,7 +76,7 @@ void MainWindow::on_btnAnalysis_clicked()
     ana.start();
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_actionContrast_triggered()
 {
     // 选择文件的对话框
     QString file = QFileDialog::getOpenFileName(this,tr("选择文件"),"D:/",tr("文本文件(*.txt)"));
@@ -96,6 +96,7 @@ void MainWindow::on_pushButton_clicked()
     number_file.close();
 
     QList<QString> zz = AnalysisUtils::NumbersContrast(text);
-
-    qDebug() << zz;
+    foreach (QString str, zz) {
+        qDebug() << str;
+    }
 }

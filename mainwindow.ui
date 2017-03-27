@@ -27,19 +27,6 @@
      <string>分析号码</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>60</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>文件浏览</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -56,6 +43,7 @@
     </property>
     <addaction name="actionKaijianghaoma"/>
     <addaction name="actionView"/>
+    <addaction name="actionContrast"/>
    </widget>
    <addaction name="menu"/>
   </widget>
@@ -66,7 +54,9 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionKaijianghaoma"/>
    <addaction name="actionView"/>
+   <addaction name="actionContrast"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionKaijianghaoma">
@@ -77,6 +67,9 @@
    <property name="text">
     <string>号码更新</string>
    </property>
+   <property name="toolTip">
+    <string>从网络更新开奖号码到数据库</string>
+   </property>
   </action>
   <action name="actionView">
    <property name="icon">
@@ -85,6 +78,21 @@
    </property>
    <property name="text">
     <string>显示号码</string>
+   </property>
+   <property name="toolTip">
+    <string>以表格的形式显示历史号码</string>
+   </property>
+  </action>
+  <action name="actionContrast">
+   <property name="icon">
+    <iconset resource="myresources.qrc">
+     <normaloff>:/icons/resources/icons/contrast_128px.png</normaloff>:/icons/resources/icons/contrast_128px.png</iconset>
+   </property>
+   <property name="text">
+    <string>投注结果</string>
+   </property>
+   <property name="toolTip">
+    <string>购买的号码保存到txt文件,第一行为本期开奖号码,格式为:xx xx xx xx xx xx-xx</string>
    </property>
   </action>
  </widget>
