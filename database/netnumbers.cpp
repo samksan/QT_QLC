@@ -11,7 +11,7 @@
  * @brief NetNumbers::getNumbers 从数据库中获取开奖号码
  * @return QList<QList<int>> 返回开奖号码
  */
-QList<QList<int>> NetNumbers::getNumbers()
+QVector<QVector<int>> NetNumbers::getNumbers()
 {
     // 获取数据库连接
     QSqlDatabase db = QSqlDatabase::database();
@@ -20,10 +20,10 @@ QList<QList<int>> NetNumbers::getNumbers()
     QSqlQuery query;
     query.exec("SELECT * FROM kjh");
 
-    QList<QList<int>> list;
+    QVector<QVector<int>> list;
     while(query.next())
     {
-       QList<int> temp;
+       QVector<int> temp;
        temp.append(query.value(0).toInt());
        temp.append(query.value(1).toInt());
        temp.append(query.value(2).toInt());

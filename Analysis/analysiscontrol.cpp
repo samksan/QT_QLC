@@ -12,7 +12,7 @@ AnalysisControl::AnalysisControl(QObject *parent) : QObject(parent)
 void AnalysisControl::start()
 {
     // 号码 numbers_total => 100 * {期号, n1, n2, n3, n4, n5, n6}
-    QList<QList<int>> numbers_total = NetNumbers::getNumbers();
+    QVector<QVector<int>> numbers_total = NetNumbers::getNumbers();
 
     // 判断数据库数据是否为 100 期
     //    int numbers_length = numbers_total.length();

@@ -1,4 +1,5 @@
 #include "analysisutils.h"
+#include <QVector>
 
 AnalysisUtils::AnalysisUtils(QObject *parent) : QObject(parent)
 {
@@ -10,11 +11,11 @@ AnalysisUtils::AnalysisUtils(QObject *parent) : QObject(parent)
  * @param text  QString 文本文件读取的内容
  * @return QList<QString> 中奖信息
  */
-QList<QString> AnalysisUtils::NumbersContrast(QString text)
+QVector<QString> AnalysisUtils::NumbersContrast(QString text)
 {
     QList<QString> list = text.split("\n");
-    QList<QList<int>> buy_number;
-    QList<int> temp;
+    QVector<QVector<int>> buy_number;
+    QVector<int> temp;
     for (int var = 0; var < list.length(); ++var) {
         temp.append(list[var].mid(0,2).toInt());
         temp.append(list[var].mid(3,2).toInt());
@@ -51,10 +52,10 @@ QList<QString> AnalysisUtils::NumbersContrast(QString text)
     int fourth = 0;
     int fifth = 0;
     int sixth =0;
-    QList<int> red_number;
+    QVector<int> red_number;
 
     // 返回的结果
-    QList<QString> zz;
+    QVector<QString> zz;
     zz << "以下是投注结果:";
     for (int var = 1; var < buy_number.length(); ++var) {
         // 红球号码
