@@ -11,7 +11,7 @@ AnalysisUtils::AnalysisUtils(QObject *parent) : QObject(parent)
  * @param text  QString 文本文件读取的内容
  * @return QList<QString> 中奖信息
  */
-QVector<QString> AnalysisUtils::NumbersContrast(QString text)
+QVector<QString> AnalysisUtils::NumbersCompare(QString text)
 {
     QList<QString> list = text.split("\n");
     QVector<QVector<int>> buy_number;

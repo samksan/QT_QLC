@@ -2,6 +2,6 @@
     <qresource prefix="/icons">
         <file>resources/icons/cloud_computing_128PX.png</file>
         <file>resources/icons/database128px.png</file>
-        <file>resources/icons/contrast_128px.png</file>
+        <file>resources/icons/compare_128px.png</file>
     </qresource>
 </RCC>

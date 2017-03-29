@@ -86,7 +86,7 @@
   <action name="actionContrast">
    <property name="icon">
     <iconset resource="myresources.qrc">
-     <normaloff>:/icons/resources/icons/contrast_128px.png</normaloff>:/icons/resources/icons/contrast_128px.png</iconset>
+     <normaloff>:/icons/resources/icons/compare_128px.png</normaloff>:/icons/resources/icons/compare_128px.png</iconset>
    </property>
    <property name="text">
     <string>投注结果</string>

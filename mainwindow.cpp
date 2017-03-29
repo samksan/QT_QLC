@@ -95,7 +95,7 @@ void MainWindow::on_actionContrast_triggered()
     // 关闭文件
     number_file.close();
 
-    QVector<QString> zz = AnalysisUtils::NumbersContrast(text);
+    QVector<QString> zz = AnalysisUtils::NumbersCompare(text);
     foreach (QString str, zz) {
         qDebug() << str;
     }
