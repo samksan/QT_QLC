@@ -22,7 +22,9 @@ private slots:
 
     void on_btnAnalysis_clicked();
 
-    void on_actionContrast_triggered();
+    void on_actionCompare_hovered();
+
+    void on_actionCompare_triggered();
 
 private:
     Ui::MainWindow *ui;

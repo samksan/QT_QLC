@@ -9,6 +9,7 @@
 
 #include <QFileDialog>
 #include <QTextStream>
+#include <QMessageBox>
 
 #include "Analysis/analysiscontrol.h"
 #include "Analysis/analysisutils.h"
@@ -62,9 +63,8 @@ void MainWindow::on_actionView_triggered()
 
     QTableView *table = new QTableView;
     table->setModel(model);
-    table->resizeColumnsToContents();
-    table->resizeRowsToContents();
-    table->setGeometry(200,160,418,360);
+    table->setGeometry(200,160,756,500);
+    table->horizontalHeader()->adjustSize();
     table->show();
 }
 
@@ -76,7 +76,7 @@ void MainWindow::on_btnAnalysis_clicked()
     ana.start();
 }
 
-void MainWindow::on_actionContrast_triggered()
+void MainWindow::on_actionCompare_triggered()
 {
     // 选择文件的对话框
     QString file = QFileDialog::getOpenFileName(this,tr("选择文件"),"D:/",tr("文本文件(*.txt)"));
@@ -96,7 +96,17 @@ void MainWindow::on_actionContrast_triggered()
     number_file.close();
 
     QVector<QString> zz = AnalysisUtils::NumbersCompare(text);
+    QString result;
     foreach (QString str, zz) {
-        qDebug() << str;
+        result += str;
+        result += "\n";
     }
+
+    QMessageBox::information(NULL,tr("开奖结果对比"),result,QMessageBox::Ok);
+    qDebug() << result;
+}
+
+void MainWindow::on_actionCompare_hovered()
+{
+    ui->statusBar->showMessage(tr("txt格式:xx xx xx xx xx xx-xx 第一行为开奖号码,之后是购买的号码"),3000);
 }
